@@ -7,6 +7,10 @@
 	<br>
 	{{i.description}}
 	<br>
+	<a href="{{url_for('editMenuItem', r_id=restaurant.id, m_id=i.id)}}">Edit</a>
+	<br>
+	<a href="{{url_for('deleteMenuItem', r_id=restaurant.id, m_id=i.id)}}">Delete</a>
+	<br>
 	<br>
 {% endfor %}
 </body>
