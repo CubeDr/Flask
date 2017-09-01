@@ -16,12 +16,9 @@ def helloWorld():
 
 @app.route('/restaurants/<int:restaurant_id>')
 def listMenuItems(restaurant_id):
-    restaurant = session.query(Restaurant).filter_by(id=restaurant_id)
+    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(restaurant_id=restaurant_id)
-    html = ''
-    for i in items:
-        html += '''<p><h2>%s</h2>%s<br>%s</p>''' % (i.name, i.price, i.description)
-    return html
+    return render_template('menus.html', restaurant=restaurant, items=items)
 
 @app.route('/restaurants/<int:r_id>/new')
 def newMenuItem(r_id):
